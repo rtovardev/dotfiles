@@ -1,0 +1,16 @@
+.DS_Store
+__pycache__/
+.zcompdump*
+*.zwc
+*.pyc
+*.log
+*.bak*
+.env
+.env.*
+*.local.zsh
+backups/
+history.db*
+auth.json
+credentials*
+sessions/
+node_modules/

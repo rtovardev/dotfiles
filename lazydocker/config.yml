@@ -1,0 +1,21 @@
+# Lazydocker Configuration
+
+gui:
+  scrollHeight: 2
+  mouseEvents: true
+  theme:
+    activeBorderColor:
+      - green
+      - bold
+    inactiveBorderColor:
+      - white
+    selectedLineBgColor:
+      - default
+    optionsTextColor:
+      - blue
+
+reporting: "off"
+checkForUpdates: false
+
+commandTemplates:
+  dockerCompose: "docker compose"

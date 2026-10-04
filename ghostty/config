@@ -1,0 +1,31 @@
+theme = Catppuccin Mocha
+
+# Tipografía nítida y proporción 1:1 de iconos con la grilla
+font-family = MesloLGS Nerd Font Mono
+font-size = 16
+font-thicken = true
+
+# Espaciado interno elegante
+window-padding-x = 14
+window-padding-y = 12
+window-padding-balance = true
+
+# Barra de pestañas integrada nativa de Ghostty (fondo fundido con Catppuccin)
+window-decoration = true
+macos-titlebar-style = tabs
+shell-integration-features = no-title
+
+# Transparencia esmerilada equilibrada
+background-opacity = 0.85
+background-blur-radius = 20
+
+# Cursor y comportamiento
+cursor-style = block
+cursor-style-blink = false
+mouse-hide-while-typing = true
+macos-option-as-alt = true
+
+# BEGIN herdr-agent-usage font
+font-codepoint-map = U+E1A0-U+E1B6="Herdr Agent Icons Max"
+font-codepoint-map = U+E1C0-U+E1C5="Herdr Agent Icons Max"
+# END herdr-agent-usage font

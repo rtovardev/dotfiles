@@ -1,0 +1,45 @@
+# Lazygit Configuration
+# Theme: Catppuccin Mocha (matched with Ghostty terminal)
+
+gui:
+  # UI styling
+  border: "rounded"
+  showBottomLine: true
+  showCommandLog: false
+  showIcons: true
+  nerdFontsVersion: "3"
+  scrollPastBottom: true
+  mouseEvents: true
+
+  theme:
+    activeBorderColor:
+      - '#a6e3a1' # Green
+      - bold
+    inactiveBorderColor:
+      - '#6c7086' # Overlay0
+    optionsTextColor:
+      - '#89b4fa' # Blue
+    selectedLineBgColor:
+      - '#313244' # Surface0
+    selectedRangeBgColor:
+      - '#45475a' # Surface1
+    cherryPickedCommitBgColor:
+      - '#45475a' # Surface1
+    cherryPickedCommitFgColor:
+      - '#a6e3a1' # Green
+    unstagedChangesColor:
+      - '#f38ba8' # Red
+    defaultFgColor:
+      - '#cdd6f4' # Text
+    searchingActiveBorderColor:
+      - '#f9e2af' # Yellow
+
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
+  autoFetch: true
+  autoRefresh: true
+
+promptToReturnFromSubprocess: false
+notARepository: "skip"
