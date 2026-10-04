@@ -1,122 +1,102 @@
-# Dotfiles de Ricardo
+# Dotfiles · Ricardo Tovar
 
-Configuración de Zsh, Ghostty, Herdr y herramientas CLI en un solo repositorio.
-Sustituye cli-config, ghostty-config y herdr-config. Neovim y my-pi-setup conservan
-sus repositorios independientes.
+Mi configuración de terminal: **Oh My Zsh + Powerlevel10k**, Ghostty, Herdr,
+Atuin, Lazygit y Lazydocker. Un repositorio para los ajustes; cada herramienta
+conserva sus propios datos, paquetes y sesiones.
 
-## Contenido
+Probado en **macOS con Apple Silicon**. El instalador reconoce las rutas XDG de
+Linux, pero ese entorno todavía no está verificado.
 
-| Carpeta | Responsabilidad |
-|---|---|
-| zsh/ | Entorno, Oh My Zsh, Powerlevel10k, integraciones y atajos propios |
-| ghostty/ | Tema, fuentes, teclado e iconos de Herdr |
-| herdr/ | Configuración del multiplexor y sus atajos |
-| atuin/ | Preferencias de historial; datos y cuenta fuera del repo |
-| lazygit/, lazydocker/ | Preferencias de las herramientas TUI |
-| bin/ | Wrapper vigente de codex-switch |
-| scripts/ | Plan, instalación con respaldo, restauración y verificación |
-| docs/ | Diagnóstico inicial y procedencia de la consolidación |
+## El stack
 
-Ghostty dibuja la terminal; Herdr organiza paneles; Zsh ejecuta comandos;
-Oh My Zsh proporciona funciones de shell; p10k dibuja el prompt;
-zsh-syntax-highlighting colorea la línea de comandos; Atuin busca el historial.
+```mermaid
+flowchart LR
+  Ghostty[Ghostty · ventana y fuentes] --> Herdr[Herdr · paneles]
+  Herdr --> Zsh[Zsh + Oh My Zsh · shell]
+  Zsh --> P10k[Powerlevel10k · prompt]
+  Zsh --> Highlight[Syntax highlighting · colores al escribir]
+  Zsh --> Atuin[Atuin · historial]
+  Zsh --> Tools[Lazygit · Lazydocker · herramientas CLI]
+```
 
-## Instalar
+| Componente | Configuración | Qué aporta |
+|---|---|---|
+| Zsh / Oh My Zsh | [zsh/](zsh/) | Entorno, completions, plugin `git` y atajos |
+| Powerlevel10k | [zsh/.p10k.zsh](zsh/.p10k.zsh) | Prompt personal e inicio rápido |
+| Ghostty | [ghostty/config](ghostty/config) | Catppuccin Mocha, Meslo Nerd Font y teclado |
+| Herdr | [herdr/config.toml](herdr/config.toml) | Paneles, atajos y presentación de agentes |
+| Atuin | [atuin/config.toml](atuin/config.toml) | Búsqueda del historial de comandos |
+| Lazygit | [lazygit/config.yml](lazygit/config.yml) | Interfaz Git con tema Catppuccin |
+| Lazydocker | [lazydocker/config.yml](lazydocker/config.yml) | Interfaz para Docker |
 
-Dependencias del instalador: Python 3.11+ y Zsh. Las herramientas se instalan aparte.
+## Empezar
+
+Necesitas **Git, Zsh y Python 3.11+**. Instala Oh My Zsh, Powerlevel10k y el
+resaltado siguiendo la [guía de instalación](docs/setup.md).
 
 ```sh
-git clone git@github.com:rtovardev/dotfiles.git ~/workspace/developer/personal/dotfiles
+git clone https://github.com/rtovardev/dotfiles.git ~/workspace/developer/personal/dotfiles
 cd ~/workspace/developer/personal/dotfiles
+
+# Revisar qué archivos se enlazarán.
 python3 scripts/install.py
+
+# Crear respaldos y aplicar los enlaces.
 python3 scripts/install.py --apply
+
+# Comprobar sintaxis y enlaces.
 python3 scripts/check.py --installed
 ```
 
-El primer comando muestra el plan. --apply respalda cada archivo o enlace existente
-en ~/.local/state/dotfiles/backups/ y enlaza la configuración con el repo clonado.
-Repetirlo no genera respaldos si los enlaces ya son correctos. No instala paquetes,
-cambia cuentas de agentes, activa watchers ni recarga Herdr.
+Puedes clonar en otra carpeta: el instalador resuelve las rutas desde el propio
+repo. Mantén esa carpeta disponible mientras sus archivos estén enlazados.
 
-En macOS se enlazan las ubicaciones de Library/Application Support para Ghostty,
-Lazygit y Lazydocker; en Linux se usan ~/.config. Si ~/.config/ghostty ya apunta
-al directorio nativo de macOS, se conserva ese enlace de directorio.
+Después, abre una nueva shell con `exec zsh`. En Ghostty, recarga la configuración
+con **Cmd + Shift + ,**. Las sesiones de Herdr no se reinician automáticamente.
 
-Las preferencias de Herdr preservan el stack actual de Ricardo, incluidos sus
-plugins. En Linux los enlaces y Zsh son portables, pero la compatibilidad de cada
-plugin de Herdr debe verificarse en ese equipo. Esta migración solo se probó en Mac.
+## Cómo funciona
 
-Abre una nueva shell con exec zsh. Ghostty permite recargar con Cmd+Shift+,.
-No se reinicia el servidor de Herdr automáticamente.
+- El instalador muestra un plan antes de aplicar. Repetir una instalación correcta
+  no modifica los enlaces ni genera otro respaldo.
+- Los archivos anteriores se guardan en `~/.local/state/dotfiles/backups/`.
+- Oh My Zsh gestiona las completions. Atuin y WTP se inicializan antes de cargar
+  el resaltado una sola vez al final.
+- El entorno conserva las toolchains instaladas y elimina duplicados de `PATH`.
+  El editor usa Vim por SSH y, localmente, Neovim, Helix o Vim según disponibilidad.
+- `SSH_AUTH_SOCK` se hereda del entorno, respetando el agente SSH del sistema.
 
-## Framework y prompt
-
-Oh My Zsh se instala según https://ohmyz.sh/. Para p10k:
-
-```sh
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
-  "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
-git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git \
-  "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
-```
-
-No ejecutes esos clones si las carpetas ya existen. El plugin git se mantiene.
-El resaltado se carga una sola vez al final, desde la instalación custom de
-Oh My Zsh, con Homebrew como alternativa. Esto permite cargar Atuin y WTP antes
-del resaltado. Oh My Zsh ejecuta compinit; no se duplica en las integraciones.
-
-El p10k configurado por Ricardo se conserva en zsh/.p10k.zsh. Puedes ejecutar
-p10k configure cuando quieras cambiarlo; si el asistente reemplaza el enlace,
-revisa el archivo generado y reincorpóralo al repo antes de reaplicar el instalador.
-
-## Entorno y preferencias locales
-
-PATH incluye solamente directorios presentes y elimina duplicados. Conserva
-las toolchains previamente instaladas de Ricardo (Go, Bun, .NET, Rust, Java,
-Railway y Composio), sin instalarlas. El editor es Vim por SSH; localmente usa
-Neovim si existe, luego Helix y finalmente Vim. No se sobrescribe SSH_AUTH_SOCK.
-
-Las preferencias de historial actuales desactivan share_history e
-inc_append_history; Atuin se inicializa si está disponible.
-
-Atajos propios: lg, ld, t, tb, cs, codex-mart, codex-personal y perfiles OpenCode.
-Se conservaron además los aliases codex, agy y opencode añadidos localmente
-a .zshrc durante la migración, incluidos sus flags personalizados. Las pruebas
-y el instalador no ejecutan estos comandos.
-El hook lean-ctx permanece fuera de la configuración común porque reescribe
-muchos comandos; si lo quieres, cárgalo explícitamente desde el archivo local.
-
-- ~/.config/zsh/env.local.zsh: variables privadas indispensables en todas las shells.
-- ~/.config/zsh/local.zsh: ajustes interactivos personales, antes del resaltado.
-
-Esos archivos son locales y quedan fuera del repo. No hay carga automática de
-.env del cerebro. No se versionan claves, credenciales, historial, bases de datos,
-cachés, sesiones, plugins instalados ni respaldos privados.
-
-codex-switch conserva el wrapper de la instalación vigente: las acciones de
-cambio de cuenta pueden detener procesos de Codex; el instalador y las pruebas
-no ejecutan esas acciones. El wrapper requiere el plugin de Herdr Account Switch
-y codex-reload externo para su subcomando update.
-
-## Paquetes y pruebas
-
-El Brewfile declara el stack CLI anterior, sin Oh My Posh. Ejecutar brew bundle
-es una acción aparte: puede instalar o actualizar paquetes. Los paquetes ya
-instalados de Oh My Posh no se desinstalan incidentalmente.
+Los paquetes del [Brewfile](Brewfile) se instalan **por separado**:
 
 ```sh
-python3 -m unittest discover -s tests -v
-python3 scripts/check.py
-git diff --check
+brew bundle --file=Brewfile
 ```
 
-Para restaurar los enlaces y archivos de una instalación:
+Ese comando puede instalar o actualizar herramientas. El instalador de enlaces
+no ejecuta Homebrew ni instala frameworks o plugins.
 
-```sh
-python3 scripts/restore.py /ruta/al/respaldo
-python3 scripts/restore.py /ruta/al/respaldo --apply
-```
+## Personalizar
 
-La restauración comprueba todos los destinos antes de actuar y se niega a pisar
-cambios posteriores del usuario. Si un destino cambió, revisa y restaura el archivo
-que corresponda manualmente desde el respaldo.
+Edita los archivos del repo y revisa el diff antes de guardar los cambios. Para
+configurar el prompt, usa `p10k configure`; la guía explica cómo conservar el
+enlace si el asistente reemplaza `~/.p10k.zsh`.
+
+Los ajustes de una sola máquina pueden vivir fuera de Git:
+
+| Archivo local | Se carga en |
+|---|---|
+| `~/.config/zsh/env.local.zsh` | Todas las shells Zsh |
+| `~/.config/zsh/local.zsh` | Shells interactivas, antes del resaltado |
+
+Los [atajos de agentes](docs/shell.md#atajos-de-agentes) reflejan mis preferencias;
+revísalos si vas a reutilizar esta configuración.
+
+## Documentación
+
+- [Instalación y dependencias](docs/setup.md)
+- [Zsh, integraciones y atajos](docs/shell.md)
+- [Mantenimiento, comprobaciones y restauración](docs/maintenance.md)
+- [Consolidación de los repos anteriores](docs/migration.md)
+
+Las cuentas, credenciales, historiales, bases de datos, sesiones, cachés y backups
+privados se conservan fuera de este repositorio. Los frameworks y plugins también
+se instalan aparte.
