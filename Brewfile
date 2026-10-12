@@ -1,7 +1,6 @@
 # Declaración de herramientas. El instalador de enlaces no ejecuta brew bundle.
 brew "atuin"
 brew "lazygit"
-brew "lazydocker"
 brew "ttt"
 brew "gh"
 cask "terminal-browser"

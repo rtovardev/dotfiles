@@ -3,8 +3,9 @@
 Dotfiles reúne los ajustes antes separados en `cli-config`, `ghostty-config`
 y `herdr-config`.
 
-Conserva las preferencias de Ghostty, Herdr, Atuin, Lazygit y Lazydocker,
-el prompt p10k y el wrapper de cuentas vigente. Zsh se adaptó a Oh My Zsh y
+El stack vigente conserva Warp, Ghostty, Atuin, Lazygit y el prompt p10k.
+Herdr, Lazydocker y el wrapper de cuentas dependiente de Herdr se retiraron
+el 2026-10-12. Warp administra sus preferencias en la aplicación. Zsh se adaptó a Oh My Zsh y
 Powerlevel10k con una sola carga del resaltado, Atuin, WTP, rutas de herramientas
 y selección de un editor disponible.
 
@@ -20,7 +21,7 @@ Los repos de configuración de Neovim y del inventario Pi se retiran por separad
 sus contenidos no se incorporan a dotfiles. Esta configuración de terminal no
 instala ni desinstala esos programas.
 
-Se comprobó la instalación en la Mac original: sintaxis, doce enlaces,
+Se comprobó la instalación en la Mac original: sintaxis, enlaces,
 idempotencia, restauración y arranque real con p10k, estado Git, resaltado,
 Atuin y WTP. Ghostty validó su archivo con `+validate-config`. Linux y otros
 equipos requieren su propia comprobación.

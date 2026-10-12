@@ -33,10 +33,8 @@ sincroniza el historial.
 
 | Atajo | Comando |
 |---|---|
-| `lg` / `ld` | Lazygit / Lazydocker |
+| `lg` | Lazygit |
 | `t` / `tb` | TTT / terminal-browser |
-| `cs` | codex-switch |
-| `codex-mart` / `codex-personal` | Selector de cuenta Codex de Herdr |
 | `opencode-personal` / `opencode-trabajo` | OpenCode con directorios de datos separados |
 
 ## Atajos de agentes
@@ -52,11 +50,6 @@ alias opencode="opencode --yolo"
 Incluyen flags personalizados de cada CLI. Puedes retirarlos o ajustarlos a tu
 flujo. La compatibilidad del flag de OpenCode no se ha certificado; el instalador
 y las pruebas no ejecutan agentes.
-
-`codex-switch` utiliza Herdr Account Switch y requiere su `switcher.py` bajo
-el estado local de Herdr. `status` consulta cuentas; `personal` y `mart` cambian
-cuenta y detienen procesos app-server de Codex. `update` requiere el helper
-externo `~/.local/bin/codex-reload`. Sus credenciales y datos no se incluyen.
 
 ## Ajustes locales
 

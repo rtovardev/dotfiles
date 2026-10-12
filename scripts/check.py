@@ -16,12 +16,9 @@ def check(home: Path, installed=False):
             result = subprocess.run(['zsh', '-n', str(p)], capture_output=True)
             print(f'ZSH {p.name}: {"OK" if result.returncode == 0 else "ERROR"}')
             failed |= result.returncode != 0
-    for relative in ['herdr/config.toml', 'atuin/config.toml']:
+    for relative in ['atuin/config.toml']:
         tomllib.loads((ROOT / relative).read_text())
         print(f'TOML {relative}: OK')
-    result = subprocess.run(['sh', '-n', str(ROOT / 'bin/codex-switch')], capture_output=True)
-    failed |= result.returncode != 0
-    print(f'SH codex-switch: {"OK" if result.returncode == 0 else "ERROR"}')
     if installed:
         for source, target in links(home):
             good = target.is_symlink() and target.exists() and target.resolve() == source.resolve()

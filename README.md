@@ -1,7 +1,6 @@
 # Dotfiles · Ricardo Tovar
 
-Mi configuración de terminal: **Oh My Zsh + Powerlevel10k**, Ghostty, Herdr,
-Atuin, Lazygit y Lazydocker. Un repositorio para los ajustes; cada herramienta
+Mi configuración principal: **Warp, Ghostty y Atuin**, con **Zsh + Oh My Zsh + Powerlevel10k**. Lazygit se conserva como herramienta auxiliar. Un repositorio para los ajustes; cada herramienta
 conserva sus propios datos, paquetes y sesiones.
 
 Probado en **macOS con Apple Silicon**. El instalador reconoce las rutas XDG de
@@ -11,23 +10,24 @@ Linux, pero ese entorno todavía no está verificado.
 
 ```mermaid
 flowchart LR
-  Ghostty[Ghostty · ventana y fuentes] --> Herdr[Herdr · paneles]
-  Herdr --> Zsh[Zsh + Oh My Zsh · shell]
+  Warp[Warp · terminal] --> Zsh[Zsh + Oh My Zsh · shell]
+  Ghostty[Ghostty · ventana y fuentes] --> Zsh
   Zsh --> P10k[Powerlevel10k · prompt]
   Zsh --> Highlight[Syntax highlighting · colores al escribir]
   Zsh --> Atuin[Atuin · historial]
-  Zsh --> Tools[Lazygit · Lazydocker · herramientas CLI]
+  Zsh --> Tools[Lazygit · herramientas CLI]
 ```
 
 | Componente | Configuración | Qué aporta |
 |---|---|---|
+| Warp | Ajustes en la aplicación | Terminal principal; comparte los dotfiles de Zsh |
 | Zsh / Oh My Zsh | [zsh/](zsh/) | Entorno, completions, plugin `git` y atajos |
 | Powerlevel10k | [zsh/.p10k.zsh](zsh/.p10k.zsh) | Prompt personal e inicio rápido |
 | Ghostty | [ghostty/config](ghostty/config) | Catppuccin Mocha, Meslo Nerd Font y teclado |
-| Herdr | [herdr/config.toml](herdr/config.toml) | Paneles, atajos y presentación de agentes |
 | Atuin | [atuin/config.toml](atuin/config.toml) | Búsqueda del historial de comandos |
 | Lazygit | [lazygit/config.yml](lazygit/config.yml) | Interfaz Git con tema Catppuccin |
-| Lazydocker | [lazydocker/config.yml](lazydocker/config.yml) | Interfaz para Docker |
+
+Warp forma parte del flujo principal. Sus preferencias propias se administran en la aplicación; este repo todavía no versiona configuración específica de Warp.
 
 ## Empezar
 
@@ -52,7 +52,7 @@ Puedes clonar en otra carpeta: el instalador resuelve las rutas desde el propio
 repo. Mantén esa carpeta disponible mientras sus archivos estén enlazados.
 
 Después, abre una nueva shell con `exec zsh`. En Ghostty, recarga la configuración
-con **Cmd + Shift + ,**. Las sesiones de Herdr no se reinician automáticamente.
+con **Cmd + Shift + ,**.
 
 ## Cómo funciona
 

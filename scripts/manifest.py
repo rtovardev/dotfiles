@@ -10,11 +10,8 @@ def links(home: Path):
         'zsh/.zprofile': '.zprofile',
         'zsh/.zshrc': '.zshrc',
         'zsh/.p10k.zsh': '.p10k.zsh',
-        'herdr/config.toml': '.config/herdr/config.toml',
         'atuin/config.toml': '.config/atuin/config.toml',
         'lazygit/config.yml': '.config/lazygit/config.yml',
-        'lazydocker/config.yml': '.config/lazydocker/config.yml',
-        'bin/codex-switch': '.local/bin/codex-switch',
     }
     if sys.platform == 'darwin':
         targets['ghostty/config'] = 'Library/Application Support/com.mitchellh.ghostty/config'
@@ -24,7 +21,6 @@ def links(home: Path):
     if sys.platform == 'darwin':
         result.extend([
             (ROOT / 'lazygit/config.yml', home / 'Library/Application Support/lazygit/config.yml'),
-            (ROOT / 'lazydocker/config.yml', home / 'Library/Application Support/lazydocker/config.yml'),
         ])
         # Si XDG ya apunta al directorio nativo, ambos nombres leen el mismo archivo.
         ghostty_xdg = home / '.config/ghostty/config'

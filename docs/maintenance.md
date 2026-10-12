@@ -17,7 +17,7 @@ git diff
 En un worktree de desarrollo utiliza `check.py` sin `--installed`: los enlaces
 pueden apuntar al checkout principal.
 
-El verificador revisa sintaxis Zsh/shell, TOML de Herdr/Atuin y los enlaces
+El verificador revisa sintaxis Zsh, TOML de Atuin y los enlaces
 cuando se solicita. Las pruebas comprueban plan sin modificaciones, aplicación,
 idempotencia, restauración de archivos/enlaces rotos y protección de cambios
 posteriores. No certifican glifos, plugins, cuentas o sincronización remota.

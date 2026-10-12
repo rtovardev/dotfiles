@@ -4,7 +4,7 @@
 
 Git, Zsh y Python 3.11+. El stack está probado en macOS Apple Silicon. En Linux
 el instalador usa rutas XDG, pero hay que revisar las opciones específicas de
-macOS de Ghostty y la compatibilidad de los plugins de Herdr.
+macOS de Ghostty.
 
 Instala [Oh My Zsh](https://ohmyz.sh/) según sus instrucciones oficiales.
 Después instala [Powerlevel10k](https://github.com/romkatv/powerlevel10k#oh-my-zsh)
@@ -40,23 +40,20 @@ archivo, se detiene para que revises el destino.
 |---|---|---|
 | Zsh | `.zshenv`, `.zprofile`, `.zshrc` y `.p10k.zsh` del home | Igual |
 | Ghostty | `~/Library/Application Support/com.mitchellh.ghostty/config` y ruta XDG cuando corresponde | `~/.config/ghostty/config` |
-| Herdr | `~/.config/herdr/config.toml` | Igual |
 | Atuin | `~/.config/atuin/config.toml` | Igual |
 | Lazygit | Ruta XDG y `~/Library/Application Support/lazygit/config.yml` | `~/.config/lazygit/config.yml` |
-| Lazydocker | Ruta XDG y `~/Library/Application Support/lazydocker/config.yml` | `~/.config/lazydocker/config.yml` |
-| codex-switch | `~/.local/bin/codex-switch` | Igual |
 
 Si `~/.config/ghostty` ya apunta al directorio nativo de macOS, se conserva ese
 enlace de directorio; ambas rutas leen el mismo archivo instalado.
 
 ## Fuentes y herramientas
 
-Ghostty usa `MesloLGS Nerd Font Mono`. Sus mapas de iconos requieren la fuente
-`Herdr Agent Icons Max`; instálala o retira los dos `font-codepoint-map` si no
-usas esos iconos.
+Ghostty usa `MesloLGS Nerd Font Mono`.
 
-El Brewfile declara Atuin, Lazygit, Lazydocker, TTT, GitHub CLI y terminal-browser.
-Ghostty, Herdr, fuentes, plugins y toolchains se instalan aparte. Lazygit utiliza
+Warp se configura en la aplicación y utiliza los archivos de Zsh enlazados. No se incluyen sesiones ni datos privados de Warp.
+
+El Brewfile declara Atuin, Lazygit, TTT, GitHub CLI y terminal-browser.
+Warp, Ghostty, fuentes, plugins y toolchains se instalan aparte. Lazygit utiliza
 `delta` como pager; WTP se inicializa solo si está disponible.
 
 ## Configurar y recargar
@@ -77,4 +74,4 @@ En Ghostty usa Cmd + Shift + , para recargar. Para validar su archivo en macOS:
 /Applications/Ghostty.app/Contents/MacOS/ghostty +validate-config
 ```
 
-El instalador no recarga Herdr, abre agentes o cambia sus cuentas.
+El instalador no abre agentes ni cambia sus cuentas.

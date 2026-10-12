@@ -24,8 +24,3 @@ cursor-style = block
 cursor-style-blink = false
 mouse-hide-while-typing = true
 macos-option-as-alt = true
-
-# BEGIN herdr-agent-usage font
-font-codepoint-map = U+E1A0-U+E1B6="Herdr Agent Icons Max"
-font-codepoint-map = U+E1C0-U+E1C5="Herdr Agent Icons Max"
-# END herdr-agent-usage font
