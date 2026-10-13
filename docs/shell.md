@@ -39,7 +39,9 @@ sincroniza el historial.
 
 ## Atajos de agentes
 
-La configuración personal conserva estos aliases en `.zshrc`:
+Pi (`pi`) es el harness principal de código, ejecutado dentro de Herdr. No se
+le añade un alias ni flags de permisos. La configuración personal conserva estos
+aliases alternativos en `.zshrc`:
 
 ```zsh
 alias codex="codex --yolo"

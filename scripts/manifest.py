@@ -11,6 +11,7 @@ def links(home: Path):
         'zsh/.zshrc': '.zshrc',
         'zsh/.p10k.zsh': '.p10k.zsh',
         'atuin/config.toml': '.config/atuin/config.toml',
+        'herdr/config.toml': '.config/herdr/config.toml',
         'lazygit/config.yml': '.config/lazygit/config.yml',
     }
     if sys.platform == 'darwin':

@@ -17,19 +17,29 @@ class InstallTest(unittest.TestCase):
             home = Path(directory)
             rc = home / '.zshrc'
             rc.write_text('original config\n')
+            herdr = home / '.config/herdr/config.toml'
+            herdr.parent.mkdir(parents=True)
+            herdr.write_text('onboarding = false\n')
+            registry = herdr.parent / 'plugins.json'
+            registry.write_text('[]\n')
             broken = home / '.config/atuin/config.toml'
             broken.parent.mkdir(parents=True)
             broken.symlink_to('/missing/previous/atuin.toml')
             install(home)
             self.assertFalse(rc.is_symlink())
             self.assertEqual(rc.read_text(), 'original config\n')
+            self.assertFalse(herdr.is_symlink())
             backup = install(home, True)
             self.assertIsNotNone(backup)
             for source, target in links(home):
                 self.assertEqual(target.resolve(), source.resolve())
+            self.assertEqual(registry.read_text(), '[]\n')
             self.assertIsNone(install(home, True))
             restore(backup, True)
             self.assertEqual(rc.read_text(), 'original config\n')
+            self.assertEqual(herdr.read_text(), 'onboarding = false\n')
+            self.assertFalse(herdr.is_symlink())
+            self.assertEqual(registry.read_text(), '[]\n')
             self.assertEqual(str(broken.readlink()), '/missing/previous/atuin.toml')
             self.assertFalse((home / '.zprofile').exists())
 

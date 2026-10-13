@@ -3,9 +3,14 @@
 Dotfiles reúne los ajustes antes separados en `cli-config`, `ghostty-config`
 y `herdr-config`.
 
-El stack vigente conserva Warp, Ghostty, Atuin, Lazygit y el prompt p10k.
+El stack vigente conserva Warp, Ghostty, Atuin, Lazygit y el prompt p10k,
+y vuelve a incorporar Herdr con Pi como harness principal de código.
 Herdr, Lazydocker y el wrapper de cuentas dependiente de Herdr se retiraron
-el 2026-10-12. Warp administra sus preferencias en la aplicación. Zsh se adaptó a Oh My Zsh y
+el 2026-10-12. El 2026-10-13 se reincorporó únicamente la configuración mínima
+vigente de Herdr al instalador; no se restauraron el perfil antiguo, el wrapper
+ni Lazydocker. Después se retiró el enlace roto del plugin local `herdr-tsk`,
+así como los plugins TTT Editor, Account Switch y Agent Usage; solo se conserva
+Heeler. Consulta [el inventario actual](herdr.md). Warp administra sus preferencias en la aplicación. Zsh se adaptó a Oh My Zsh y
 Powerlevel10k con una sola carga del resaltado, Atuin, WTP, rutas de herramientas
 y selección de un editor disponible.
 

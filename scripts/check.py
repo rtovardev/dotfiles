@@ -16,7 +16,7 @@ def check(home: Path, installed=False):
             result = subprocess.run(['zsh', '-n', str(p)], capture_output=True)
             print(f'ZSH {p.name}: {"OK" if result.returncode == 0 else "ERROR"}')
             failed |= result.returncode != 0
-    for relative in ['atuin/config.toml']:
+    for relative in ['atuin/config.toml', 'herdr/config.toml']:
         tomllib.loads((ROOT / relative).read_text())
         print(f'TOML {relative}: OK')
     if installed:

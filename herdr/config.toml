@@ -1,0 +1,3 @@
+# Configuración vigente; el resto usa los valores por defecto de Herdr.
+# Plugins, sesiones y credenciales se administran fuera de dotfiles.
+onboarding = false

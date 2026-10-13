@@ -4,7 +4,9 @@
 
 Git, Zsh y Python 3.11+. El stack está probado en macOS Apple Silicon. En Linux
 el instalador usa rutas XDG, pero hay que revisar las opciones específicas de
-macOS de Ghostty.
+macOS de Ghostty. Comprueba `python3 --version`: el Python del sistema de
+macOS puede ser 3.9 y no incluye `tomllib`. En esta Mac se validó con
+`/opt/homebrew/bin/python3` (3.14); usa Python 3.11+ para los comandos del repo.
 
 Instala [Oh My Zsh](https://ohmyz.sh/) según sus instrucciones oficiales.
 Después instala [Powerlevel10k](https://github.com/romkatv/powerlevel10k#oh-my-zsh)
@@ -41,6 +43,7 @@ archivo, se detiene para que revises el destino.
 | Zsh | `.zshenv`, `.zprofile`, `.zshrc` y `.p10k.zsh` del home | Igual |
 | Ghostty | `~/Library/Application Support/com.mitchellh.ghostty/config` y ruta XDG cuando corresponde | `~/.config/ghostty/config` |
 | Atuin | `~/.config/atuin/config.toml` | Igual |
+| Herdr | `~/.config/herdr/config.toml` | Igual |
 | Lazygit | Ruta XDG y `~/Library/Application Support/lazygit/config.yml` | `~/.config/lazygit/config.yml` |
 
 Si `~/.config/ghostty` ya apunta al directorio nativo de macOS, se conserva ese
@@ -53,7 +56,7 @@ Ghostty usa `MesloLGS Nerd Font Mono`.
 Warp se configura en la aplicación y utiliza los archivos de Zsh enlazados. No se incluyen sesiones ni datos privados de Warp.
 
 El Brewfile declara Atuin, Lazygit, TTT, GitHub CLI y terminal-browser.
-Warp, Ghostty, fuentes, plugins y toolchains se instalan aparte. Lazygit utiliza
+Warp, Ghostty, Herdr, Pi, fuentes, plugins y toolchains se instalan aparte. Lazygit utiliza
 `delta` como pager; WTP se inicializa solo si está disponible.
 
 ## Configurar y recargar
@@ -74,4 +77,6 @@ En Ghostty usa Cmd + Shift + , para recargar. Para validar su archivo en macOS:
 /Applications/Ghostty.app/Contents/MacOS/ghostty +validate-config
 ```
 
-El instalador no abre agentes ni cambia sus cuentas.
+El instalador no abre agentes ni cambia sus cuentas. Herdr organiza el flujo
+principal de código con Pi; consulta [su configuración y plugins](herdr.md).
+Aplicar enlaces tampoco recarga el servidor de Herdr.
