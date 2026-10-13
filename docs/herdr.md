@@ -1,7 +1,7 @@
 # Herdr + Pi
 
 Herdr es el gestor de workspaces y paneles persistentes para el trabajo de código.
-Pi es el harness principal. Warp y Ghostty siguen disponibles como terminales.
+Pi es el harness principal y Ghostty es la única terminal del flujo.
 Las versiones y el estado observado están en el [README](../README.md).
 
 ## Configuración versionada

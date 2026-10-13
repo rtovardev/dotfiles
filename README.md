@@ -1,7 +1,7 @@
 # Dotfiles · Ricardo Tovar
 
 Mi flujo principal de código: **Herdr + Pi**, sobre **Zsh + Oh My Zsh + Powerlevel10k**.
-**Warp y Ghostty** son las terminales; **Atuin** gestiona el historial y **Lazygit**
+**Ghostty** es la única terminal; **Atuin** gestiona el historial y **Lazygit**
 es una herramienta auxiliar. Un repositorio para los ajustes; cada herramienta
 conserva sus propios datos, paquetes y sesiones.
 
@@ -12,8 +12,7 @@ Linux, pero ese entorno todavía no está verificado.
 
 ```mermaid
 flowchart LR
-  Warp[Warp · terminal] --> Zsh[Zsh + Oh My Zsh · shell]
-  Ghostty[Ghostty · ventana y fuentes] --> Zsh
+  Ghostty[Ghostty · terminal, ventana y fuentes] --> Zsh[Zsh + Oh My Zsh · shell]
   Zsh --> P10k[Powerlevel10k · prompt]
   Zsh --> Highlight[Syntax highlighting · colores al escribir]
   Zsh --> Atuin[Atuin · historial]
@@ -24,7 +23,6 @@ flowchart LR
 
 | Componente | Configuración | Qué aporta |
 |---|---|---|
-| Warp | Ajustes en la aplicación | Terminal; comparte los dotfiles de Zsh |
 | Herdr | [herdr/config.toml](herdr/config.toml) | Workspaces, paneles y sesiones de código persistentes |
 | Pi | Instalación y datos externos al repo | Harness principal de código dentro de Herdr |
 | Zsh / Oh My Zsh | [zsh/](zsh/) | Entorno, completions, plugin `git` y atajos |
@@ -33,9 +31,8 @@ flowchart LR
 | Atuin | [atuin/config.toml](atuin/config.toml) | Búsqueda del historial de comandos |
 | Lazygit | [lazygit/config.yml](lazygit/config.yml) | Interfaz Git con tema Catppuccin |
 
-Las preferencias de Warp se administran en la aplicación; este repo no versiona
-configuración específica de Warp. Herdr usa la configuración mínima vigente,
-no el antiguo perfil de `herdr-config`.
+Ghostty es la única terminal del flujo. Herdr usa la configuración mínima
+vigente, no el antiguo perfil de `herdr-config`.
 
 ## Herdr y plugins actuales
 

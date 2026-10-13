@@ -53,10 +53,10 @@ enlace de directorio; ambas rutas leen el mismo archivo instalado.
 
 Ghostty usa `MesloLGS Nerd Font Mono`.
 
-Warp se configura en la aplicación y utiliza los archivos de Zsh enlazados. No se incluyen sesiones ni datos privados de Warp.
+Ghostty es la única terminal del flujo y utiliza los archivos de Zsh enlazados.
 
 El Brewfile declara Atuin, Lazygit, TTT, GitHub CLI y terminal-browser.
-Warp, Ghostty, Herdr, Pi, fuentes, plugins y toolchains se instalan aparte. Lazygit utiliza
+Ghostty, Herdr, Pi, fuentes, plugins y toolchains se instalan aparte. Lazygit utiliza
 `delta` como pager; WTP se inicializa solo si está disponible.
 
 ## Configurar y recargar

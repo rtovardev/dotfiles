@@ -1,7 +1,7 @@
 # Dotfiles de Ricardo
 
 Este repositorio contiene ajustes de Zsh, Ghostty, Atuin, Herdr y herramientas CLI.
-Herdr organiza el trabajo de código con Pi como harness principal; Warp y Ghostty son terminales.
+Herdr organiza el trabajo de código con Pi como harness principal; Ghostty es la única terminal.
 Las instalaciones de frameworks/plugins y los datos de los agentes viven fuera.
 
 - Leer README.md. Preservar cambios locales y revisar las rutas antes de enlazar.
