@@ -1,13 +1,15 @@
 import contextlib
 import importlib.util
 import io
-from pathlib import Path
 import subprocess
 import tempfile
 import unittest
+from pathlib import Path
 
 SCRIPT = Path(__file__).resolve().parent.parent / 'scripts/patch-herdr-bar.py'
 spec = importlib.util.spec_from_file_location('patch_herdr_bar', SCRIPT)
+if spec is None or spec.loader is None:
+    raise RuntimeError('No se puede cargar patch-herdr-bar.py')
 patcher = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(patcher)
 
