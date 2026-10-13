@@ -17,10 +17,11 @@ git diff
 En un worktree de desarrollo utiliza `check.py` sin `--installed`: los enlaces
 pueden apuntar al checkout principal.
 
-El verificador revisa sintaxis Zsh, TOML de Atuin y los enlaces
+El verificador revisa sintaxis Zsh, TOML de Atuin/Herdr, JSON de Bar, ajustes de Auto Title y los enlaces
 cuando se solicita. Las pruebas comprueban plan sin modificaciones, aplicación,
-idempotencia, restauración de archivos/enlaces rotos y protección de cambios
-posteriores. No certifican glifos, plugins, cuentas o sincronización remota.
+idempotencia, restauración de archivos/enlaces rotos, protección de cambios
+posteriores y aplicación segura del parche de Bar. No certifican glifos,
+generación real de títulos, cuentas o sincronización remota.
 
 ## Actualizar
 
@@ -29,6 +30,12 @@ actualizar la rama. Conserva cualquier trabajo local y vuelve a verificar despu�
 de integrar cambios. Si mueves el checkout, vuelve a planificar y aplicar enlaces.
 
 Oh My Zsh, p10k y sus plugins se actualizan en sus instalaciones respectivas.
+Bar también: una actualización puede perder su parche local para Pi, conservado
+inactivo mientras Auto Title es el único renombrador. Revisa la
+[guía de reaplicación](herdr.md#conservar-y-reaplicar-el-parche); el script rechaza
+otros commits hasta revisar la compatibilidad. Auto Title está fijado a 0.13.2;
+revisa el nuevo commit antes de actualizar y ejecuta `herdr.auto-title.restart`
+después de cambiar versión o configuración. No actives los escritores de Bar a la vez.
 
 ## Respaldos
 

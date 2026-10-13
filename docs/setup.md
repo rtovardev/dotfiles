@@ -43,7 +43,7 @@ archivo, se detiene para que revises el destino.
 | Zsh | `.zshenv`, `.zprofile`, `.zshrc` y `.p10k.zsh` del home | Igual |
 | Ghostty | `~/Library/Application Support/com.mitchellh.ghostty/config` y ruta XDG cuando corresponde | `~/.config/ghostty/config` |
 | Atuin | `~/.config/atuin/config.toml` | Igual |
-| Herdr | `~/.config/herdr/config.toml` | Igual |
+| Herdr | `~/.config/herdr/config.toml`, `~/.config/herdr/plugins/config/herdr-bar/config.json` y `~/.config/herdr-auto-title/config.env` | Igual |
 | Lazygit | Ruta XDG y `~/Library/Application Support/lazygit/config.yml` | `~/.config/lazygit/config.yml` |
 
 Si `~/.config/ghostty` ya apunta al directorio nativo de macOS, se conserva ese
@@ -51,12 +51,15 @@ enlace de directorio; ambas rutas leen el mismo archivo instalado.
 
 ## Fuentes y herramientas
 
-Ghostty usa `MesloLGS Nerd Font Mono`.
+Ghostty usa `MesloLGS Nerd Font Mono`. Los logos de Bar usan el fallback
+`Herdr Agent Icons Max`, que se instala por separado; consulta
+[Bar, navegación e iconos](herdr.md#bar-navegación-iconos-y-estados).
 
 Ghostty es la única terminal del flujo y utiliza los archivos de Zsh enlazados.
 
 El Brewfile declara Atuin, Lazygit, TTT, GitHub CLI y terminal-browser.
-Ghostty, Herdr, Pi, fuentes, plugins y toolchains se instalan aparte. Lazygit utiliza
+Ghostty, Herdr, Pi, fuentes, plugins y toolchains se instalan aparte. Auto Title
+requiere Go para el build; sigue su [instalación explícita](herdr.md#instalación-reproducible). Lazygit utiliza
 `delta` como pager; WTP se inicializa solo si está disponible.
 
 ## Configurar y recargar

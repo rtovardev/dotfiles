@@ -24,3 +24,8 @@ cursor-style = block
 cursor-style-blink = false
 mouse-hide-while-typing = true
 macos-option-as-alt = true
+
+# Herdr Bar: Cmd+K envía Ctrl+Alt+K; reemplaza limpiar scrollback.
+keybind = cmd+k=text:\x1b[107;7u
+# La fuente Herdr Agent Icons Max se instala por separado.
+font-codepoint-map = U+E1A0-U+E1B7=Herdr Agent Icons Max

@@ -1,3 +1,22 @@
 # Configuración vigente; el resto usa los valores por defecto de Herdr.
 # Plugins, sesiones y credenciales se administran fuera de dotfiles.
+# Auto Title publica el topic sin renombrar los workspaces.
 onboarding = false
+
+[[keys.command]]
+key = ["prefix+k", "ctrl+alt+k"]
+type = "plugin_action"
+command = "herdr-bar.open"
+description = "command bar"
+
+[[keys.command]]
+key = "prefix+R"
+type = "plugin_action"
+command = "herdr.auto-title.restart"
+description = "restart auto title"
+
+[ui.sidebar.spaces]
+rows = [
+  ["state_icon", "workspace", "branch", "git_status"],
+  [{ token = "$topic", bold = true, dim = false }],
+]

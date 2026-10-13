@@ -31,8 +31,8 @@ flowchart LR
 | Atuin | [atuin/config.toml](atuin/config.toml) | Búsqueda del historial de comandos |
 | Lazygit | [lazygit/config.yml](lazygit/config.yml) | Interfaz Git con tema Catppuccin |
 
-Ghostty es la única terminal del flujo. Herdr usa la configuración mínima
-vigente, no el antiguo perfil de `herdr-config`.
+Ghostty es la única terminal del flujo. Herdr usa la configuración vigente y
+atajos de Bar, no el antiguo perfil de `herdr-config`.
 
 ## Herdr y plugins actuales
 
@@ -44,8 +44,25 @@ los aliases de otros agentes se conservan como alternativas.
 | Plugin habilitado | Versión | Estado observado |
 |---|---|---|
 | `heeler` | 0.5.0 | Arranque y hooks de actividad/notificaciones exitosos; emparejamiento móvil no comprobado |
+| `herdr-bar` | 0.7.3 + parche Pi conservado | Popup, navegación e iconos; watcher de títulos/prefijos detenido |
+| `herdr.auto-title` | 0.13.2 | Único renombrador de pestañas/paneles; topic en sidebar; nombres manuales retenidos tras restart |
+| `mirror` | 0.4.3 | Registrado y habilitado; sincronización remota no comprobada en esta revisión |
 
-**Heeler es el único plugin instalado y habilitado**. Se retiraron los plugins
+**Heeler, Bar, Auto Title y Mirror están instalados y habilitados**. Bar se abre
+con **Cmd+K** en Ghostty o **Ctrl+B, K** en Herdr. **Recarga primero la ventana
+abierta de Ghostty con Cmd+Shift+,**: Ricardo confirmó la apertura real tras esa
+recarga. Auto Title nombra pestañas/paneles desde contexto terminal, agente y Git;
+publica `$topic` en sidebar sin renombrar workspaces. Sus ajustes públicos están en
+[herdr/auto-title.env](herdr/auto-title.env); **Ctrl+B, Shift+R** reinicia el daemon.
+
+Bar conserva navegación/iconos, con sus escritores de etiquetas desactivados en
+[herdr/bar.json](herdr/bar.json). El parche de nombres de Pi se conserva inactivo:
+Auto Title **no refleja `/name` ni genera nombres de sesiones Pi**. Se retiró
+`pi-rename-session` por incompatibilidad comprobada con `pi-topping`. Consulta
+[el setup y sus límites](docs/herdr.md#auto-title-etiquetas-y-topic). El instalador
+enlaza configuraciones: no instala plugins, aplica parches ni activa watchers.
+
+Se retiraron los plugins
 `herdr-tsk`, `ttt.editor`, `rcosteira.account-switch` y `herdr-agent-usage`, junto
 con sus configuraciones locales; el watcher de Agent Usage también se detuvo.
 Las CLI independientes `ttt` y `tsk` se conservan, al igual que las cuentas y
